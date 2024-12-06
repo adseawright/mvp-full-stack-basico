@@ -24,20 +24,6 @@ backend/
       |- imposto.py       # Schema do Imposto
 ```
 
-## Dependências
-
-As dependências do projeto estão listadas no arquivo **requirements.txt**. Para instalá-las, no terminal, mude para o diretorio do backend (ambiente Windows):
-
-```sh
-cd backend
-```
-
-E execute o seguinte comando:
-
-```sh
-pip install -r requirements.txt
-```
-
 ### Principais Dependências
 
 - **Flask**: Framework para a criação de APIs REST
@@ -48,19 +34,37 @@ pip install -r requirements.txt
 
 ## Executando o Backend
 
-Siga as etapas a seguir para executar o backend:
+Siga as etapas a seguir para executar o backend no ambiente Windows:
 
-1. **Instalar dependências**. 
+1.**Entrar no diretorio do backend**
+  No terminal, mude para o diretorio do backend:
+  ```sh
+  cd backend
+  ```
+
+2.**Criar o Ambiente Virtual**
+   ```sh
+   python -m venv env
+   ```
+
+3.**Ativar o ambiente Virtual**
+  ```sh
+  .\env\Scripts\Activate
+  ```
+
+4. **Instalar dependências**. 
    ```sh
    pip install -r requirements.txt
    ```
 
-2. **Executar o Flask**:
+4. **Executar o Flask**:
    ```sh
-   python app.py
+   flask run --host 0.0.0.0 --port 5000
    ```
 
-3. **Documentação da API**: A documentação Swagger pode ser acessada em:
+5. **Documentação da API**:
+  
+   A documentação Swagger pode ser acessada em:
    ```
    http://127.0.0.1:5000/apidocs
    ```
