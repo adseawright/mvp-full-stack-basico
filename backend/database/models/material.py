@@ -12,7 +12,6 @@ class Material(Base):
     quantidade = Column(Float, nullable=False)
     custo_total = Column(Float, nullable=False)
     unidade_id = Column(Integer, ForeignKey('unidades.id'), nullable=False)
-    #taxa = Column(Float, nullable=False, default=0.0) 
 
     # Relacionamento com a classe Unidade para obter informações da unidade de medida do material
     unidade = relationship("Unidade")

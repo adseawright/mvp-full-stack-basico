@@ -36,7 +36,7 @@ def create_tables():
 # Operações CRUD usando SQLAlchemy
 
 # Função para criar um novo material
-def create_material(nome, quantidade, custo_total, unidade_id, taxa=0):
+def create_material(nome, quantidade, custo_total, unidade_id):
     session = SessionLocal()
     try:
         novo_material = Material(
@@ -44,7 +44,6 @@ def create_material(nome, quantidade, custo_total, unidade_id, taxa=0):
             quantidade=quantidade,
             custo_total=custo_total,
             unidade_id=unidade_id,
-            taxa=taxa  
         )
         session.add(novo_material)
         session.commit()
@@ -66,7 +65,6 @@ def get_all_materials():
             "quantidade": material.quantidade,
             "custo_total": material.custo_total,
             "unidade": material.unidade.nome if material.unidade else "N/A",  # Garantir que unidade não seja None
-            "taxa": material.taxa  
         } for material in materiais]
     except Exception as e:
         print(f"Erro ao listar materiais: {e}")
@@ -76,7 +74,7 @@ def get_all_materials():
 
 
 # Função para atualizar um material existente
-def update_material(id, nome, quantidade, custo_total, unidade_id, taxa=None):
+def update_material(id, nome, quantidade, custo_total, unidade_id):
     session = SessionLocal()
     try:
         material = session.query(Material).filter(Material.id == id).first()
@@ -85,8 +83,6 @@ def update_material(id, nome, quantidade, custo_total, unidade_id, taxa=None):
             material.quantidade = quantidade
             material.custo_total = custo_total
             material.unidade_id = unidade_id
-            if taxa is not None: 
-                material.taxa = taxa
             session.commit()
     except Exception as e:
         print(f"Erro ao atualizar material: {e}")

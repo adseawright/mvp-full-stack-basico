@@ -46,8 +46,7 @@ create_tables()
                     'nome': {'type': 'string'},
                     'quantidade': {'type': 'number'},
                     'custo_total': {'type': 'number'},
-                    'unidade_id': {'type': 'number'},
-                    'taxa': {'type': 'number'}
+                    'unidade_id': {'type': 'number'}
                 }
             }
         }
@@ -61,14 +60,13 @@ def cadastrar_material():
         quantidade = data.get('quantidade')
         custo_total = data.get('custo_total')
         unidade_id = data.get('unidade_id')
-        taxa = data.get('taxa', 0)  # Valor padrão de taxa é 0 se não for fornecido
 
         # Verificar se todos os campos obrigatórios foram fornecidos
         if not all([nome, quantidade, custo_total, unidade_id]):
             return jsonify({"error": "Missing required fields"}), 400
 
         # Chamar a função para criar o material no banco de dados
-        create_material(nome, quantidade, custo_total, unidade_id, taxa)
+        create_material(nome, quantidade, custo_total, unidade_id)
         return jsonify({"message": "Material cadastrado com sucesso"}), 201
 
     except Exception as e:
@@ -91,8 +89,7 @@ def cadastrar_material():
                         'nome': {'type': 'string'},
                         'quantidade': {'type': 'number'},
                         'custo_total': {'type': 'number'},
-                        'unidade': {'type': 'string'},
-                        'taxas': {'type': 'number'}
+                        'unidade': {'type': 'string'}
                     }
                 }
             }
@@ -113,7 +110,6 @@ def listar_materiais():
                 'quantidade': material.get('quantidade'),
                 'custo_total': material.get('custo_total'),
                 'unidade': material.get('unidade'),
-                'taxas': material.get('taxas')
             } for material in materiais
         ]
         return jsonify(serialized_materiais), 200
@@ -174,8 +170,7 @@ def listar_unidades():
                     'nome': {'type': 'string'},
                     'quantidade': {'type': 'number'},
                     'custo_total': {'type': 'number'},
-                    'unidade_id': {'type': 'number'},
-                    'taxas': {'type': 'number'}
+                    'unidade_id': {'type': 'number'}
                 }
             }
         }
@@ -192,14 +187,13 @@ def atualizar_material_route(id):
         quantidade = data.get('quantidade')
         custo_total = data.get('custo_total')
         unidade_id = data.get('unidade_id')
-        taxas = data.get('taxas', 0)  # Taxa padrão é 0 se não for fornecida
 
         # Verificar se todos os campos obrigatórios foram fornecidos
         if not all([nome, quantidade, custo_total, unidade_id]):
             return jsonify({"error": "Missing required fields"}), 400
 
         # Chamar a função para atualizar o material
-        update_material(id, nome, quantidade, custo_total, unidade_id, taxas)
+        update_material(id, nome, quantidade, custo_total, unidade_id)
         return jsonify({'message': 'Material atualizado com sucesso!'}), 200
     except Exception as e:
         print(f"Erro ao atualizar material: {e}")

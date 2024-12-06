@@ -9,8 +9,7 @@ class MaterialSchema(BaseModel):
     nome: str = "Exemplo de Material"  
     quantidade: float = 10.0  
     custo_total: float = 100.0  
-    unidade_id: int = 1  
-    taxa: Optional[float] = 0.0  
+    unidade_id: int = 1
 
 # Classe para buscar materiais com base no nome ou quantidade
 #class MaterialBuscaSchema(BaseModel):
@@ -35,8 +34,7 @@ def apresenta_materiais(materiais: List[Material]):
             "nome": material.nome,
             "quantidade": material.quantidade,
             "custo_total": material.custo_total,
-            "unidade": material.unidade.nome if material.unidade else "Desconhecido",  
-            "taxa": material.taxa,
+            "unidade": material.unidade.nome if material.unidade else "Desconhecido"
         })
     return {"materiais": result}
 
@@ -48,7 +46,6 @@ class MaterialViewSchema(BaseModel):
     quantidade: float = 10.0 
     custo_total: float = 100.0 
     unidade: str = "kg" 
-    taxa: float = 0.0 
 
 # Classe para atualizar os dados de um material, onde os campos são opcionais
 class MaterialUpdateSchema(BaseModel):
@@ -57,7 +54,6 @@ class MaterialUpdateSchema(BaseModel):
     quantidade: Optional[float] = 15.0
     custo_total: Optional[float] = 120.0 
     unidade_id: Optional[int] = 1
-    taxa: Optional[float] = 2.0
 
 # Função que apresenta um material no formato necessário para ser retornado via API
 def apresenta_material(material: Material):
@@ -68,5 +64,4 @@ def apresenta_material(material: Material):
         "quantidade": material.quantidade,
         "custo_total": material.custo_total,
         "unidade": material.unidade.nome if material.unidade else "Desconhecido",  # Utiliza a relação com unidade para obter o nome
-        "taxa": material.taxa,
     }
